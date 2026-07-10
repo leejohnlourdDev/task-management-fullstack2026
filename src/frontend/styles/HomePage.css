@@ -1,0 +1,383 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #F0EFEF;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Logo link styling */
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+}
+
+/* Remove default link styles for logo */
+.logo:link,
+.logo:visited,
+.logo:hover,
+.logo:active {
+  text-decoration: none;  /* no underline */
+  color: inherit;         /* keep same color */
+}
+
+.profile-btn {
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Search bar under header */
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.search-bar input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
+}
+
+/* Add Task button under header when tasks exist */
+.add-task-top {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem 2rem;
+}
+
+/* Make Add button more prominent and match team color */
+.btn-add-task {
+  padding: 0.8rem 1.6rem;
+  background-color: #FF8400;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255,132,0,0.18);
+}
+
+.btn-add-task:hover { transform: translateY(-2px); }
+
+/* Main Content */
+.home-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+}
+
+.no-task {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  color: #777;
+  text-align: center;
+}
+
+.center-add {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.add-hint {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Single Task Centered */
+.single-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* Task Grid */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  gap: 1.5rem;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .task-grid { grid-template-columns: repeat(2, 200px); }
+}
+
+@media (max-width: 640px) {
+  .task-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .task-card { width: 100%; height: auto; padding: 1rem; }
+  .logo { font-size: 1.4rem; }
+}
+
+/* Task Card */
+.task-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.task-card.completed {
+  background-color: #f99427;
+  text-decoration: line-through;
+  color: #070707;
+}
+
+/* Actions hidden by default */
+.task-actions {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show on hover */
+.task-card:hover .task-actions {
+  opacity: 1;
+}
+
+/* Buttons styling */
+.btn-view,
+.btn-delete {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btn-view {
+  background-color: #FF8400;
+  color: #fff;
+}
+
+.btn-view:hover {
+  background-color: #dc7200;
+}
+
+.btn-delete {
+  background-color: #6d6d6d;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #f12438;
+}
+
+/* Add Task Button */
+.btn-add-task {
+  padding: 0.8rem 2rem;
+  background-color: #FF8400;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-add-task:hover {
+  opacity: 0.85;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 420px;
+  max-width: 90%;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-box h2 {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* Description input */
+.description-input {
+  width: 100%;
+  min-height: 70px;
+  margin-bottom: 1rem;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  resize: none;
+  color: #333;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.description-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0,123,255,0.4);
+}
+
+/* Posted description */
+.description-read {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  background: #fafafa;
+  padding: 0.8rem;
+  border-radius: 6px;
+  border-left: 3px solid #007bff;
+}
+
+/* Action buttons */
+.modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.btn-complete,
+.btn-incomplete,
+.btn-close {
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.btn-complete {
+  background: #ef6007;
+  color: #fff;
+}
+
+.btn-incomplete {
+  background: #807f7f;
+  color: #000;
+}
+
+.btn-close {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-complete:hover,
+.btn-incomplete:hover,
+.btn-close:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Group search bar and filter together */
+.search-filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Equal height for search + filter */
+.search-filter-group input,
+.search-filter-group .filter-select {
+  height: 40px;
+  font-size: 1rem;
+  padding: 0 12px;
+  border-radius: 6px;
+}
+
+/* Single task centered */
+.single-task {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* No task message */
+.no-task h2 {
+  color: #666;
+  font-weight: 500;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Login CTA shown when unauthenticated */
+.login-cta {
+  padding: 0.6rem 1rem;
+  background: #FF8400; /* team color */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(255,132,0,0.18);
+}
+
+.login-cta:hover { opacity: 0.95; transform: translateY(-1px); }
+
+/* Header right side: add button + login/profile */
+.header-right {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.header-right > .btn-add-task {
+  margin-right: 0.25rem;
+}

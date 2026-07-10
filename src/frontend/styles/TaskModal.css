@@ -1,0 +1,159 @@
+/* === Modal Overlay === */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 420px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  animation: fadeIn 0.3s ease;
+}
+
+/* === Title Input (edit mode only) === */
+.title-input {
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border: none;
+  border-bottom: 1px solid #eee;
+  outline: none;         /* <-- removes blue outline */
+  box-shadow: none;      /* <-- removes blue glow */
+  padding: 6px;
+  background: transparent;
+  color: #222;
+  transition: border 0.3s ease, background 0.3s ease;
+}
+
+.title-input:focus {
+  border-bottom: 1px solid #aaa;
+  outline: none;         /* <-- ensures no blue outline */
+  box-shadow: none;      /* <-- ensures no blue glow */
+}
+
+.title-input:disabled {
+  background: #f9f9f9;
+  color: #777;
+  font-style: italic;
+  cursor: not-allowed;
+  border-bottom: 1px dashed #bbb;
+  transition: all 0.3s ease;
+}
+
+/* === Description Input (edit mode only) === */
+.description-input {
+  width: 100%;
+  min-height: 80px;
+  margin-bottom: 1rem;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  outline: none;         /* <-- removes blue outline */
+  box-shadow: none;      /* <-- removes blue glow */
+  resize: none;
+  background: #fafafa;
+  color: #222;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: border 0.3s ease, background 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.description-input:focus {
+  border: 1px solid #aaa;
+  background: #fff;
+  outline: none;         /* <-- ensures no blue outline */
+  box-shadow: none;      /* <-- ensures no blue glow */
+}
+
+.description-input:disabled {
+  background: #f9f9f9;
+  color: #777;
+  font-style: italic;
+  cursor: not-allowed;
+  border: 1px dashed #bbb;
+  transition: all 0.3s ease;
+}
+
+/* === Description Read (view mode) === */
+.description-read {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  background: #f9f9f9;
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  border-left: 3px solid #eee;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.description-read.paused {
+  color: #777;
+  font-style: italic;
+  background: #f5f5f5;
+  border-left: 3px dashed #bbb;
+}
+
+/* === Action Buttons === */
+.modal-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.btn-complete,
+.btn-incomplete,
+.btn-close {
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.btn-complete {
+  background: #f75206;
+  color: #fff;
+}
+
+.btn-incomplete {
+  background: #a7a6a6;
+  color: #000;
+}
+
+.btn-close {
+  background: #dc3545;
+  color: #fff;
+}
+
+.btn-complete:hover,
+.btn-incomplete:hover,
+.btn-close:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* === Fade-in Animation === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

@@ -1,0 +1,68 @@
+.task-card {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative; /* allow absolute positioning inside */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.task-card.completed {
+  background-color: #f99427;
+  text-decoration: line-through;
+  color: #070707;
+}
+
+/* Actions hidden by default */
+.task-actions {
+  position: absolute;
+  bottom: 10px;
+  display: flex;
+  gap: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show on hover */
+.task-card:hover .task-actions {
+  opacity: 1;
+}
+
+/* Buttons styling */
+.btn-view,
+.btn-delete {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.btn-view {
+  background-color: #FF8400;
+  color: #fff;
+}
+
+.btn-view:hover {
+  background-color: #dc7200;
+}
+
+.btn-delete {
+  background-color: #6d6d6d;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background-color: #f12438;
+}

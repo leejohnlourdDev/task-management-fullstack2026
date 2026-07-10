@@ -1,0 +1,23 @@
+.filter-task {
+  display: inline-block;
+}
+
+.filter-select {
+  width: 98px;          /* same width as search bar */
+  height: 40px;          /* same height */
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border 0.2s ease, background 0.2s ease;
+}
+
+.filter-select:focus {
+  outline: none;
+  border: 1px solid #aaa;
+}
+
+.filter-select:hover {
+  background: #f9f9f9;
+}
